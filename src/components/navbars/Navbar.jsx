@@ -14,7 +14,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Button from "@mui/material/Button";
-
+import MediaQuery from 'react-responsive'
 // COMPONENTS
 import Sidenav from "./Sidenav";
 import CircularFetching from "../CircularFetching";
@@ -151,6 +151,7 @@ export default function PrimarySearchAppBar() {
       );
     }
   };
+
   // Show Profile/Cart btns when user is active
   const showProfile = () => {
     return (
@@ -252,8 +253,10 @@ export default function PrimarySearchAppBar() {
               Build NooK
             </Typography>
           </Link>
-          <Sidenav />
-          <Search style={{marginRight: "auto"}}>
+          <MediaQuery maxWidth={730}>
+            <Sidenav />
+          </MediaQuery>
+          <Search style={{ marginRight: "auto" }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -263,7 +266,7 @@ export default function PrimarySearchAppBar() {
             />
           </Search>
 
-          <Box/>
+          <Box />
           {isUserActive && showProfile()}
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton

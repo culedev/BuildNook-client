@@ -5,7 +5,7 @@ import { AuthContext } from "./auth.context";
 const ProfileContext = createContext();
 
 const ProfileWrapper = (props) => {
-  const { user, isUserActive } = useContext(AuthContext);
+  const { isUserActive } = useContext(AuthContext);
   const [profile, setProfile] = useState(null);
   const [isFetchingShoppingCart, setIsFetchingShoppingCart] = useState(true);
 
@@ -19,7 +19,7 @@ const ProfileWrapper = (props) => {
 
   const getProfile = async () => {
     try {
-      const response = await findProfile(user._id);
+      const response = await findProfile();
       setProfile(response.data);
       setIsFetchingShoppingCart(false);
     } catch (error) {

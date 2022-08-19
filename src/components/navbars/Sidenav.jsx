@@ -50,7 +50,7 @@ export default function BasicMenu() {
         {categoriesArr.map((eachCategorie) => {
           const categorieName = eachCategorie.split("-").join(" ").toUpperCase()
           return (
-            <Link to={`/${eachCategorie}`} style={{textDecoration: "none", color: "#52489C"}}>
+            <Link to={`/products/${eachCategorie}`} style={{textDecoration: "none", color: "#52489C"}}>
               <MenuItem
                 onClick={handleClose}
               >
