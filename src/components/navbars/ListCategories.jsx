@@ -54,7 +54,7 @@ export default function CustomizedList() {
           palette: {
             mode: "dark",
             primary: { main: "rgb(102, 157, 246)" },
-            background: { paper: "#52489C" },
+            background: { paper: "white" },
           },
         })}
       >
@@ -62,7 +62,7 @@ export default function CustomizedList() {
           <FireNav component="nav" disablePadding>
             <Box
               sx={{
-                bgcolor: open ? "rgba(71, 98, 130, 0.2)" : null,
+                bgcolor: open ? "white" : null,
                 pb: open ? 2 : 0,
               }}
             >
@@ -73,8 +73,9 @@ export default function CustomizedList() {
                   px: 3,
                   pt: 2.5,
                   pb: open ? 0 : 2.5,
-                  "&:hover, &:focus": { "& svg": { opacity: open ? 1 : 0 } },
+                  "&:hover, &:focus": { "& svg": { opacity: open ? 1 : 0 } },                
                 }}
+                
               >
                 <ListItemText
                   primary="CATEGORIES"
@@ -83,13 +84,14 @@ export default function CustomizedList() {
                     fontWeight: "medium",
                     lineHeight: "20px",
                     mb: "2px",
+                    color: "#52489C",
                   }}
                   secondary="POWER SUPPLY, MOTHERBOARD, HDD, SSD, GRAPHIC CARDS, RAM, PC TOWER, FAN, LIQUID REFRIGERATION"
                   secondaryTypographyProps={{
                     noWrap: true,
                     fontSize: 12,
                     lineHeight: "16px",
-                    color: open ? "rgba(0,0,0,0)" : "rgba(255,255,255,0.5)",
+                    color: open ? "rgba(0,0,0,0)" : "#52489C",
                   }}
                   sx={{ my: 0 }}
                 />
@@ -99,6 +101,7 @@ export default function CustomizedList() {
                     opacity: 0,
                     transform: open ? "rotate(-180deg)" : "rotate(0)",
                     transition: "0.2s",
+                    color: "#52489C",
                   }}
                 />
               </ListItemButton>
@@ -110,7 +113,7 @@ export default function CustomizedList() {
                       sx={{
                         py: 0,
                         minHeight: 32,
-                        color: "rgba(255,255,255,.8)",
+                        color: "#52489C",
                       }}
                     >
                       <ListItemIcon sx={{ color: "inherit" }}>
@@ -121,6 +124,7 @@ export default function CustomizedList() {
                         primaryTypographyProps={{
                           fontSize: 14,
                           fontWeight: "medium",
+                          color: "#52489C",
                         }}
                       />
                     </ListItemButton>

@@ -6,7 +6,7 @@ import { Divider } from "@mui/material";
 
 import ListCategories from "../../components/navbars/ListCategories";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
 import { filteredCategorie } from "../../services/products.services";
 
@@ -41,7 +41,7 @@ const Categories = () => {
       <div style={{ flexGrow: 1 }}>
         <ListCategories />
       </div>
-
+      <Divider orientation="vertical" flexItem />
       <div style={{ flexGrow: 2, margin: "20px" }}>
         <h3 style={{ color: "#52489C" }}>DISCOVER NEW PRODUCTS!</h3>
         <Divider />
@@ -52,8 +52,8 @@ const Categories = () => {
           style={{ margin: "20px" }}
         >
           {products.map((product, index) => (
-            <Grid xs={2} sm={4} md={4} key={index}>
-              <ProductCard product={product} />
+            <Grid xs={2} sm={4} md={4} key={index}  style={{display: "flex", justifyContent: "center"}}>
+              <Link to={`/products/${product._id}/details`} style={{textDecoration: "none"}}><ProductCard product={product} /></Link>
             </Grid>
           ))}
         </Grid>

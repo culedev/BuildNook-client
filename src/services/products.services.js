@@ -17,12 +17,16 @@ const deleteProduct = (productId) => {
 };
 
 const addToWishList = (productId) => {
-    return service.patch(`/wishlist/${productId}`)
-}
+  return service.patch(`/wishlist/${productId}`);
+};
 
 const filteredCategorie = (categorie) => {
-    return service.get(`/products/${categorie}`)
-}
+  return service.get(`/products/${categorie}`);
+};
+
+const getProductDetails = (productId) => {
+  return service.get(`/products/${productId}/details`);
+};
 
 export {
   getAllProducts,
@@ -31,4 +35,5 @@ export {
   deleteProduct,
   addToWishList,
   filteredCategorie,
+  getProductDetails,
 };

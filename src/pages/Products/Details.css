@@ -1,0 +1,22 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-left: 20px;
+}
+
+.boxImage {
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 900px) {
+    .boxImage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .boxImage img {
+        width: 200px;
+    }
+}
