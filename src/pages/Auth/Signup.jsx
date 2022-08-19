@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // Services
 import { signupService } from "../../services/auth.services";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const Signup = () => {
   return (
     <div className="box">
       <div className="signup-box">
+      <h2 style={{color: "#52489C"}}>Sign Up</h2>
         <form onSubmit={handleSubmit} className="signup">
           <TextField
             id="outlined-basic"
@@ -68,9 +70,10 @@ const Signup = () => {
           <br />
           {errorMessage && <p>{errorMessage}</p>}
           <br />
-          <Button variant="contained" type="submit" color="primary" style={{width: "50%"}}>
+          <Button variant="contained" type="submit" style={{ width: "50%", backgroundColor: "#7b57c2" }}>
             Sign Up
           </Button>
+          <Link to={"/login"}><p>Already an user?</p></Link>
         </form>
       </div>
     </div>

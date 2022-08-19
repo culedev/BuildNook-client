@@ -10,7 +10,7 @@ const AuthWrapper = (props) => {
 
   useEffect(() => {
     authenticateUser();
-  });
+  }, []);
 
   const authenticateUser = async () => {
     try {
@@ -24,16 +24,16 @@ const AuthWrapper = (props) => {
       setIsFetching(false);
     }
   };
-
+ 
+  
+  if (isFetching) {
+    return <h2>...Loading</h2>;
+  }
   const passedContext = {
     isUserActive,
     user,
     authenticateUser,
   };
-
-  if (isFetching) {
-    return <h2>...Loading</h2>;
-  }
 
   return (
     <AuthContext.Provider value={passedContext}>

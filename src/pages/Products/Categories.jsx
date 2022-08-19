@@ -1,8 +1,10 @@
-
+import CircularFetching from "../../components/CircularFetching";
 const Categories = () => {
   return (
-    <div>Categories</div>
-  )
-}
+    <div>
+      <CircularFetching />
+    </div>
+  );
+};
 
-export default Categories
+export default Categories;

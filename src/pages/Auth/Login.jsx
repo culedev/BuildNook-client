@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 // Services
 import { loginService } from "../../services/auth.services";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { authenticateUser } = useContext(AuthContext);
@@ -38,13 +39,18 @@ const Login = () => {
 
       navigate("/");
     } catch (error) {
-      navigate("/error");
+      if (error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage);
+      } else {
+        navigate("/error");
+      }
     }
   };
 
   return (
     <div className="box">
       <div className="signup-box">
+        <h2 style={{color: "#52489C"}}>Log In</h2>
         <form onSubmit={handleSubmit} className="signup">
           <TextField
             id="outlined-basic"
@@ -68,11 +74,11 @@ const Login = () => {
           <Button
             variant="contained"
             type="submit"
-            color="primary"
-            style={{ width: "50%" }}
+            style={{ width: "50%", backgroundColor: "#7b57c2" }}
           >
             Log In
           </Button>
+          <Link to={"/signup"}><p>Need an account?</p></Link>
         </form>
       </div>
     </div>

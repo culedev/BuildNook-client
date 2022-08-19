@@ -5,16 +5,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AuthWrapper } from "./context/auth.context";
+import { ProfileWrapper } from "./context/profile.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <AuthWrapper>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <AuthWrapper>
+      <ProfileWrapper>
         <App />
-      </AuthWrapper>
-    </BrowserRouter>
-  </React.StrictMode>
+      </ProfileWrapper>
+    </AuthWrapper>
+  </BrowserRouter>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
