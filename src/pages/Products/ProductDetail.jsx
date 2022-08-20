@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getProductDetails } from "../../services/products.services";
 // COMPONENTS
 import ListCategories from "../../components/navbars/ListCategories"
-
+import BoxDescRev from "../../components/BoxDescRev"
 
 const ProductDetail = () => {
   const navigate = useNavigate()
@@ -56,7 +56,7 @@ const ProductDetail = () => {
           </div>
         </div>
         <div>
-          <h3>Description/Reviews</h3>
+          <BoxDescRev />
         </div>
       </div>
     </div>

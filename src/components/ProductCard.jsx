@@ -44,7 +44,7 @@ export default function ProductCard({product}) {
         {product.name}
         </Typography>
         <Typography variant="h5" color="#52489C">
-        {product.price}$
+        {product.price}€
         </Typography>
       </CardContent>
       <CardActions style={{display: "flex", justifyContent: "center"}}>

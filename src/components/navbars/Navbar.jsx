@@ -14,7 +14,6 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Button from "@mui/material/Button";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import MediaQuery from "react-responsive";
 // COMPONENTS
 import Sidenav from "./Sidenav";
@@ -81,6 +80,7 @@ export default function PrimarySearchAppBar() {
 
   useEffect(() => {
     getProfile();
+    authenticateUser();
   }, []);
 
   const handleLogout = () => {
@@ -212,47 +212,43 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>
-        <Link
-          to={`/profile/${user._id}`}
-          style={{ textDecoration: "none", color: "#52489C" }}
-        >
-          My Profile
-        </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link
-          to={`/profile/${user._id}/wish-list`}
-          style={{ textDecoration: "none", color: "#52489C" }}
-        >
-          Wish List
-        </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link
-          to={`/profile/${user._id}/purchase-history`}
-          style={{ textDecoration: "none", color: "#52489C" }}
-        >
-          Purchase History
-        </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link
-          to={`/profile/${user._id}/my-reviews`}
-          style={{ textDecoration: "none", color: "#52489C" }}
-        >
-          My Reviews
-        </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link
-          to={`/profile/${user._id}/edit-profile`}
-          style={{ textDecoration: "none", color: "#52489C" }}
-        >
-          Edit Profile
-        </Link>
-      </MenuItem>
-      <MenuItem onClick={handleLogout} style={{color: "red"}}>Logout</MenuItem>
+      {isUserActive && (
+        <div>
+          <Link
+            to={`/profile/${user._id}/my-profile`}
+            style={{ textDecoration: "none", color: "#52489C" }}
+          >
+            <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+          </Link>
+          <Link
+            to={`/profile/${user._id}/wish-list`}
+            style={{ textDecoration: "none", color: "#52489C" }}
+          >
+            <MenuItem onClick={handleMenuClose}>Wish List</MenuItem>
+          </Link>
+          <Link
+            to={`/profile/${user._id}/purchase-history`}
+            style={{ textDecoration: "none", color: "#52489C" }}
+          >
+            <MenuItem onClick={handleMenuClose}>Purchase History</MenuItem>
+          </Link>
+          <Link
+            to={`/profile/${user._id}/my-reviews`}
+            style={{ textDecoration: "none", color: "#52489C" }}
+          >
+            <MenuItem onClick={handleMenuClose}>My Reviews</MenuItem>
+          </Link>
+          <Link
+            to={`/profile/${user._id}/edit-profile`}
+            style={{ textDecoration: "none", color: "#52489C" }}
+          >
+            <MenuItem onClick={handleMenuClose}>Edit Profile</MenuItem>
+          </Link>
+          <MenuItem onClick={handleLogout} style={{ color: "red" }}>
+            Logout
+          </MenuItem>
+        </div>
+      )}
     </Menu>
   );
 
