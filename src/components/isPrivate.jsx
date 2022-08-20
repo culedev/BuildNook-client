@@ -1,5 +1,7 @@
+// HOOKS
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context.js";
+// ROUTES
 import { Navigate } from "react-router-dom";
 
 const IsPrivate = (props) => {

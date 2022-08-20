@@ -1,13 +1,13 @@
-// Styles
+// STYLES
 import "./Auth.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-// Hooks
+// HOOKS
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-// Context
+// CONTEXT
 import { AuthContext } from "../../context/auth.context";
-// Services
+// SERVICES
 import { loginService } from "../../services/auth.services";
 import { Link } from "react-router-dom";
 

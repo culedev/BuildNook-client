@@ -1,35 +1,18 @@
+// STYLES
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Divider } from "@mui/material";
-
-import ListCategories from "../components/navbars/ListCategories";
+// HOOKS
 import { useEffect, useState } from "react";
+// ROUTES
+import { useNavigate } from "react-router-dom";
+// SERVICES
 import { getAllProducts } from "../services/products.services";
-import { useNavigate, Link } from "react-router-dom";
-
-import CircularFetching from "../components/CircularFetching";
+// COMPONENTS
+import ListCategories from "../components/navbars/ListCategories";
 import ProductCard from "../components/ProductCard";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
-const categoriesArr = [
-  "power-supply",
-  "motherboard",
-  "HDD",
-  "SSD",
-  "graphic-cards",
-  "ram",
-  "pc-tower",
-  "fan",
-  "liquid-refrigeration",
-];
+import SimpleBackdrop from "../components/SimpleBackdrop";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -53,7 +36,7 @@ const Home = () => {
   };
 
   if (isFetching) {
-    return <CircularFetching />;
+    return <SimpleBackdrop />;
   }
 
   return (
@@ -64,23 +47,24 @@ const Home = () => {
         <ListCategories />
       </div>
       <Divider orientation="vertical" flexItem />
-      <div style={{ flexGrow: 2, margin: "20px"}}>
-        <h3 style={{ color: "#52489C" }}>DISCOVER NEW PRODUCTS!</h3>
+      <div style={{ flexGrow: 2, margin: "20px" }}>
+        <h2 style={{ color: "#52489C" }}>DISCOVER NEW PRODUCTS!</h2>
         <Divider />
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 1, sm: 8, md: 12 }}
-          style={{ margin: "20px"}}
+          style={{ margin: "20px" }}
         >
           {products.map((product, index) => (
-            <Grid xs={2} sm={4} md={4} key={index} style={{display: "flex", justifyContent: "center"}}>
-              <Link
-                to={`/products/${product._id}/details`}
-                style={{ textDecoration: "none" }}
-              >
-                <ProductCard product={product} />
-              </Link>
+            <Grid
+              xs={2}
+              sm={4}
+              md={4}
+              key={index}
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <ProductCard product={product} />
             </Grid>
           ))}
         </Grid>

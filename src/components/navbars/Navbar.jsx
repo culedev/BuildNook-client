@@ -14,11 +14,10 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Button from "@mui/material/Button";
-import MediaQuery from 'react-responsive'
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import MediaQuery from "react-responsive";
 // COMPONENTS
 import Sidenav from "./Sidenav";
-import CircularFetching from "../CircularFetching";
-
 // HOOKS
 import { useContext, useEffect, useState } from "react";
 // ROUTES
@@ -26,6 +25,7 @@ import { Link, useNavigate } from "react-router-dom";
 // CONTEXT
 import { AuthContext } from "../../context/auth.context";
 import { ProfileContext } from "../../context/profile.context";
+import SimpleBackdrop from "../SimpleBackdrop";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -68,7 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const { isUserActive, authenticateUser } = useContext(AuthContext);
+  const { user, isUserActive, authenticateUser } = useContext(AuthContext);
   const { profile, getProfile, isFetchingShoppingCart } =
     useContext(ProfileContext);
 
@@ -136,7 +136,7 @@ export default function PrimarySearchAppBar() {
   };
   const shoppingCartIcon = () => {
     if (isFetchingShoppingCart) {
-      return <CircularFetching />;
+      return <SimpleBackdrop />;
     } else {
       return (
         <IconButton
@@ -177,7 +177,7 @@ export default function PrimarySearchAppBar() {
       <div>
         <MenuItem>
           {shoppingCartIcon()}
-          <p>Notifications</p>
+          <p>Shopping Cart</p>
         </MenuItem>
         <MenuItem onClick={handleProfileMenuOpen}>
           <IconButton
@@ -212,9 +212,47 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleLogout}>Logout</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link
+          to={`/profile/${user._id}`}
+          style={{ textDecoration: "none", color: "#52489C" }}
+        >
+          My Profile
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link
+          to={`/profile/${user._id}/wish-list`}
+          style={{ textDecoration: "none", color: "#52489C" }}
+        >
+          Wish List
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link
+          to={`/profile/${user._id}/purchase-history`}
+          style={{ textDecoration: "none", color: "#52489C" }}
+        >
+          Purchase History
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link
+          to={`/profile/${user._id}/my-reviews`}
+          style={{ textDecoration: "none", color: "#52489C" }}
+        >
+          My Reviews
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link
+          to={`/profile/${user._id}/edit-profile`}
+          style={{ textDecoration: "none", color: "#52489C" }}
+        >
+          Edit Profile
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleLogout} style={{color: "red"}}>Logout</MenuItem>
     </Menu>
   );
 

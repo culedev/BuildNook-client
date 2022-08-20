@@ -10,21 +10,10 @@ import Paper from "@mui/material/Paper";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import MediaQuery from 'react-responsive'
 // HOOKS
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/auth.context";
 // ROUTES
 import { Link } from "react-router-dom";
-
-const data = [
-  { label: "POWER SUPPLY", path: "/products/power-supply" },
-  { label: "MOTHERBOARD", path: "/products/motherboard"  },
-  { label: "HDD", path: "/products/HDD"  },
-  { label: "SSD", path: "/products/SSD"  },
-  { label: "GRAPHIC CARDS", path: "/products/graphic-cards"  },
-  { label: "RAM", path: "/products/ram"  },
-  { label: "PC TOWER", path: "/products/pc-tower"  },
-  { label: "FAN", path: "/products/fan"  },
-  { label: "LIQUID REFRIGERATION", path: "/products/liquid-refrigeration"  },
-];
 
 const FireNav = styled(List)({
   "& .MuiListItemButton-root": {
@@ -41,6 +30,15 @@ const FireNav = styled(List)({
 });
 
 export default function CustomizedList() {
+  const {user} = useContext(AuthContext)
+  
+const data = [
+  { label: "EDIT PROFILE", path: `/profile/${user._id}/edit-profile`},
+  { label: "PURCHASE HISTORY", path: `/profile/${user._id}/purchase-history`},
+  { label: "WISH LIST", path: `/profile/${user._id}/wish-list`},
+  { label: "MY REVIEWS", path: `/profile/${user._id}/my-reviews`},
+];
+
   const [open, setOpen] = useState(true);
   return (
     <MediaQuery minWidth={730}>
@@ -81,7 +79,7 @@ export default function CustomizedList() {
                 
               >
                 <ListItemText
-                  primary="CATEGORIES"
+                  primary="MY PROFILE"
                   primaryTypographyProps={{
                     fontSize: 15,
                     fontWeight: "medium",
@@ -89,7 +87,7 @@ export default function CustomizedList() {
                     mb: "2px",
                     color: "#52489C",
                   }}
-                  secondary="POWER SUPPLY, MOTHERBOARD, HDD, SSD, GRAPHIC CARDS, RAM, PC TOWER, FAN, LIQUID REFRIGERATION"
+                  secondary="EDIT PROFILE, PURCHASE HISTORY, WISH LIST, MY REVIEWS"
                   secondaryTypographyProps={{
                     noWrap: true,
                     fontSize: 12,

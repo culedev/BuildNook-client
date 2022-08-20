@@ -1,8 +1,13 @@
+// STYLES
 import "./Details.css"
+// HOOKS
 import { useEffect, useState } from "react";
+// ROUTES
 import { useNavigate, useParams } from "react-router-dom";
-import ListCategories from "../../components/navbars/ListCategories"
+// SERVICES
 import { getProductDetails } from "../../services/products.services";
+// COMPONENTS
+import ListCategories from "../../components/navbars/ListCategories"
 
 
 const ProductDetail = () => {

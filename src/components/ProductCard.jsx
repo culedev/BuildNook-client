@@ -1,3 +1,4 @@
+// STYLES
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -6,11 +7,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-
+// SERVICES
 import { addProductToCart } from '../services/transaction.services';
+import { addToWishList } from '../services/products.services';
+// HOOKS
 import { ProfileContext } from '../context/profile.context';
 import { useContext } from 'react';
-import { addToWishList } from '../services/products.services';
+// ROUTES
+import { Link } from "react-router-dom"
 
 
 export default function ProductCard({product}) {
@@ -27,12 +31,14 @@ export default function ProductCard({product}) {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
+    <Link to={`/products/${product._id}/details`} style={{textDecoration: "none"}}>
       <CardMedia
         component="img"
         alt="green iguana"
         height="200"
         image={product.image}
       />
+      </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
         {product.name}
