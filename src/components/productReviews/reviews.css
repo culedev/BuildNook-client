@@ -19,5 +19,17 @@
 }
 
 .reviewBtn {
+    display: flex;
+    justify-content: flex-end;
+}
 
+@media only screen and (max-width: 850px) {
+    .reviewBox {
+        width: 350px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .reviewBox {
+        width: 220px;
+    }
 }

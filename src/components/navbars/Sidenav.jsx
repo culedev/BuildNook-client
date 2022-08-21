@@ -2,6 +2,7 @@
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import MediaQuery from "react-responsive";
 // HOOKS
 import { useState } from "react";
 // ROUTES
@@ -50,15 +51,22 @@ export default function BasicMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
+        <MediaQuery maxWidth={600}>
+          <Link to={`/`} style={{ textDecoration: "none", color: "#52489C" }}>
+            <MenuItem onClick={handleClose}>BACK HOME</MenuItem>
+          </Link>
+        </MediaQuery>
         {categoriesArr.map((eachCategorie) => {
-          const categorieName = eachCategorie.split("-").join(" ").toUpperCase()
+          const categorieName = eachCategorie
+            .split("-")
+            .join(" ")
+            .toUpperCase();
           return (
-            <Link to={`/products/${eachCategorie}`} style={{textDecoration: "none", color: "#52489C"}}>
-              <MenuItem
-                onClick={handleClose}
-              >
-                {categorieName}
-              </MenuItem>
+            <Link
+              to={`/products/${eachCategorie}`}
+              style={{ textDecoration: "none", color: "#52489C" }}
+            >
+              <MenuItem onClick={handleClose}>{categorieName}</MenuItem>
             </Link>
           );
         })}
