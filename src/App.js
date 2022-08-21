@@ -13,6 +13,8 @@ import ProductDetails from "./pages/Products/ProductDetail.jsx"
 import Profile from "./pages/Profile/Profile.jsx"
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart.jsx"
 import IsPrivate from "./components/isPrivate"
+import Error from "./pages/Error.jsx"
+import NotFound from "./pages/NotFound.jsx"
 
 function App() {
   return (
@@ -20,13 +22,16 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path="/products/:categorie" element={<Categories />}/>
-        <Route path="/products/:productId/details" element={<ProductDetails />}/>
-        <Route path="/profile/:userId/:display" element={<IsPrivate><Profile /></IsPrivate>}/>
-        <Route path="/cart/:userId" element={<IsPrivate><ShoppingCart /></IsPrivate>}/>
+        <Route path='/' element={ <Home /> }/>
+        <Route path="/products/:categorie" element={ <Categories /> }/>
+        <Route path="/products/:productId/details" element={ <ProductDetails /> }/>
+        <Route path="/profile/:userId/:display" element={ <IsPrivate> <Profile /> </IsPrivate> }/>
+        <Route path="/cart/:userId" element={ <IsPrivate> <ShoppingCart /> </IsPrivate> }/>
         <Route path="/signup" element={ <Signup /> }/>
         <Route path="/login" element={ <Login /> }/>
+        {/* Error Routes */}
+        <Route path="/error" element={ <Error /> }/>
+        <Route path="/*" element={ <NotFound />}/>
       </Routes>
 
       <Footer />

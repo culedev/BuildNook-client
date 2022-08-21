@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import SimpleBackdrop from "../components/SimpleBackdrop";
 import { findProfile } from "../services/profile.services";
 import { AuthContext } from "./auth.context";
 
@@ -7,13 +8,13 @@ const ProfileContext = createContext();
 const ProfileWrapper = (props) => {
   const { isUserActive } = useContext(AuthContext);
   const [profile, setProfile] = useState(null);
-  const [isFetchingShoppingCart, setIsFetchingShoppingCart] = useState(true);
+  const [isFetchingProfile, setIsFetchingProfile] = useState(true);
 
   useEffect(() => {
     if (isUserActive) {
       getProfile();
     } else {
-      setIsFetchingShoppingCart(false);
+      setIsFetchingProfile(false);
     }
   }, [isUserActive]);
 
@@ -21,18 +22,22 @@ const ProfileWrapper = (props) => {
     try {
       const response = await findProfile();
       setProfile(response.data);
-      setIsFetchingShoppingCart(false);
+      setIsFetchingProfile(false);
     } catch (error) {
       setProfile(null);
-      setIsFetchingShoppingCart(false);
+      setIsFetchingProfile(false);
     }
   };
 
   const passedContext = {
     profile,
     getProfile,
-    isFetchingShoppingCart,
+    isFetchingProfile,
   };
+
+  if(isFetchingProfile){
+    return <SimpleBackdrop />
+  }
 
   return (
     <ProfileContext.Provider value={passedContext}>

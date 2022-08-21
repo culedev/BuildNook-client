@@ -17,6 +17,7 @@ import Button from "@mui/material/Button";
 import MediaQuery from "react-responsive";
 // COMPONENTS
 import Sidenav from "./Sidenav";
+import SimpleBackdrop from "../SimpleBackdrop";
 // HOOKS
 import { useContext, useEffect, useState } from "react";
 // ROUTES
@@ -24,7 +25,6 @@ import { Link, useNavigate } from "react-router-dom";
 // CONTEXT
 import { AuthContext } from "../../context/auth.context";
 import { ProfileContext } from "../../context/profile.context";
-import SimpleBackdrop from "../SimpleBackdrop";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -67,9 +67,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const { user, isUserActive, authenticateUser } = useContext(AuthContext);
-  const { profile, getProfile, isFetchingShoppingCart } =
-    useContext(ProfileContext);
+  const { isUserActive, authenticateUser } = useContext(AuthContext);
+  const { profile, getProfile, isFetchingProfile } = useContext(ProfileContext);
 
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -104,6 +103,11 @@ export default function PrimarySearchAppBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  if (isFetchingProfile) {
+    return <SimpleBackdrop />;
+  }
+
   // Show Login/Signup btns when user isnt active
   const showAuthBtns = () => {
     if (!isUserActive) {
@@ -135,7 +139,7 @@ export default function PrimarySearchAppBar() {
     }
   };
   const shoppingCartIcon = () => {
-    if (isFetchingShoppingCart) {
+    if (isFetchingProfile) {
       return <SimpleBackdrop />;
     } else {
       return (
@@ -215,31 +219,31 @@ export default function PrimarySearchAppBar() {
       {isUserActive && (
         <div>
           <Link
-            to={`/profile/${user._id}/my-profile`}
+            to={`/profile/${profile._id}/my-profile`}
             style={{ textDecoration: "none", color: "#52489C" }}
           >
             <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
           </Link>
           <Link
-            to={`/profile/${user._id}/wish-list`}
+            to={`/profile/${profile._id}/wish-list`}
             style={{ textDecoration: "none", color: "#52489C" }}
           >
             <MenuItem onClick={handleMenuClose}>Wish List</MenuItem>
           </Link>
           <Link
-            to={`/profile/${user._id}/purchase-history`}
+            to={`/profile/${profile._id}/purchase-history`}
             style={{ textDecoration: "none", color: "#52489C" }}
           >
             <MenuItem onClick={handleMenuClose}>Purchase History</MenuItem>
           </Link>
           <Link
-            to={`/profile/${user._id}/my-reviews`}
+            to={`/profile/${profile._id}/my-reviews`}
             style={{ textDecoration: "none", color: "#52489C" }}
           >
             <MenuItem onClick={handleMenuClose}>My Reviews</MenuItem>
           </Link>
           <Link
-            to={`/profile/${user._id}/edit-profile`}
+            to={`/profile/${profile._id}/edit-profile`}
             style={{ textDecoration: "none", color: "#52489C" }}
           >
             <MenuItem onClick={handleMenuClose}>Edit Profile</MenuItem>

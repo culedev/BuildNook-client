@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import SimpleBackdrop from "../components/SimpleBackdrop";
 import { verifyService } from "../services/auth.services";
 
 const AuthContext = createContext();
@@ -26,15 +27,16 @@ const AuthWrapper = (props) => {
   };
  
   
-  if (isFetching) {
-    return <h2>...Loading</h2>;
-  }
   const passedContext = {
     isUserActive,
     user,
     authenticateUser,
   };
-
+  
+  if (isFetching) {
+    return <SimpleBackdrop />;
+  }
+  
   return (
     <AuthContext.Provider value={passedContext}>
       {props.children}

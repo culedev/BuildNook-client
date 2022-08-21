@@ -17,10 +17,13 @@ import { addToWishList } from '../../services/products.services';
 import ListCategories from "../../components/navbars/ListCategories";
 import BoxDescRev from "../../components/BoxDescRev";
 import { avgRating } from "../../services/reviews.service";
+import { AuthContext } from "../../context/auth.context";
+import SimpleBackdrop from "../../components/SimpleBackdrop";
 
 const ProductDetail = () => {
   const navigate = useNavigate();
   const {getProfile} = useContext(ProfileContext)
+  const { isUserActive } = useContext(AuthContext)
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [rating, setRating] = useState({});
@@ -43,17 +46,33 @@ const ProductDetail = () => {
   };
 
   const handleAddCart = async () => {
-    await addProductToCart(product._id);
-    getProfile();
+    if(isUserActive){
+      try {
+        await addProductToCart(product._id);
+        getProfile();
+      } catch (error) {
+        navigate("/error")
+      }
+    } else {
+      navigate("/login")
+    }
   };
 
   const handleWishList = async () => {
-    await addToWishList(product._id);
-    getProfile();
+    if(isUserActive) {
+      try {
+        await addToWishList(product._id);
+        getProfile();
+      } catch (error) {
+        navigate("/error")
+      }
+    } else {
+      navigate("/login")
+    }
   };
 
   if (isFetching) {
-    return <h2>...Loading</h2>;
+    return <SimpleBackdrop />;
   }
 
   return (

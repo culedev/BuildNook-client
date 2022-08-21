@@ -20,6 +20,10 @@ const deleteProduct = (productId) => {
 const addToWishList = (productId) => {
   return service.patch(`/wishlist/${productId}`);
 };
+// Remove product from user wish list
+const removeFromWishList = (productId) => {
+  return service.patch(`/wishlist/${productId}/delete`)
+}
 // Filter products by Categories
 const filteredCategorie = (categorie) => {
   return service.get(`/products/${categorie}`);
@@ -37,4 +41,5 @@ export {
   addToWishList,
   filteredCategorie,
   getProductDetails,
+  removeFromWishList,
 };
