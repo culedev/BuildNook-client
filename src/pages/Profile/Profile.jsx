@@ -50,7 +50,7 @@ const Profile = () => {
       <div style={{ flexGrow: 20, margin: "20px" }}>
         <h2>Hello, {profile.username}</h2>
         <p>{profile.email}</p>
-        <img src={profile.image} alt="" style={{width: "200px", height: "200px", borderRadius: "200px"}}/>
+        <img src={profile.image} alt={profile.username} style={{width: "200px", height: "200px", borderRadius: "200px"}}/>
         <Divider variant="middle" style={{margin: "20px 0"}}/>
         {displayInfo()}
       </div>

@@ -4,8 +4,8 @@ const findProfile = () => {
   return service.get(`/profile`);
 };
 // Edit user profile
-const editProfile = (inputs) => {
-  return service.post("/profile", inputs)
+const editProfile = (image) => {
+  return service.patch("/profile", image)
 }
 
 export { findProfile, editProfile };

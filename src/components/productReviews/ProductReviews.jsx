@@ -13,7 +13,7 @@ import { deleteReview, getAllReviews } from "../../services/reviews.service";
 import { AuthContext } from "../../context/auth.context";
 // COMPONENTS
 import SimpleBackdrop from "../SimpleBackdrop";
-import AddReview from "./AddReview";
+
 
 const ProductReviews = () => {
   const navigate = useNavigate();
@@ -111,7 +111,7 @@ const ProductReviews = () => {
           </div>
         );
       })}
-      {isUserActive && <AddReview />}
+      
     </div>
   );
 };

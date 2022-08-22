@@ -1,4 +1,5 @@
 // STYLES
+import * as React from 'react';
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -15,6 +16,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Button from "@mui/material/Button";
 import MediaQuery from "react-responsive";
+import Drawer from '@mui/material/Drawer';
 // COMPONENTS
 import Sidenav from "./Sidenav";
 import SimpleBackdrop from "../SimpleBackdrop";
@@ -26,7 +28,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import { ProfileContext } from "../../context/profile.context";
 // SERVICES
-import { getAllProducts } from "../../services/products.services"
+import { getAllProducts } from "../../services/products.services";
+import CartBtn from './CartBtn';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -75,9 +78,32 @@ export default function PrimarySearchAppBar() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const [state, setState] = React.useState({
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+     
+    </Box>
+  );
 
   useEffect(() => {
     getProfile();
@@ -169,7 +195,18 @@ export default function PrimarySearchAppBar() {
           color="inherit"
         >
           <Badge badgeContent={profile.shoppingCart.length} color="error">
-            <ShoppingCartIcon />
+            <React.Fragment key={"right"} style={{width: "10px"}}>
+              <Button onClick={toggleDrawer("right", true)} style={{color: "white"}}>
+                <ShoppingCartIcon />
+              </Button>
+              <Drawer
+                anchor={"right"}
+                open={state["right"]}
+                onClose={toggleDrawer("right", false)}
+              >
+                <CartBtn />
+              </Drawer>
+            </React.Fragment>
           </Badge>
         </IconButton>
       );

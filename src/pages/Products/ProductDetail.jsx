@@ -19,6 +19,7 @@ import BoxDescRev from "../../components/BoxDescRev";
 import { avgRating } from "../../services/reviews.service";
 import { AuthContext } from "../../context/auth.context";
 import SimpleBackdrop from "../../components/SimpleBackdrop";
+import AddReview from "../../components/productReviews/AddReview";
 
 const ProductDetail = () => {
   const navigate = useNavigate();
@@ -116,6 +117,7 @@ const ProductDetail = () => {
                 Add Cart
               </Button>
             </div>
+            {isUserActive && <AddReview />}
           </div>
         </div>
         <div>
