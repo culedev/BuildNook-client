@@ -49,7 +49,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, minWidth: 345 }}>
       <Link
         to={`/products/${product._id}/details`}
         style={{ textDecoration: "none" }}
@@ -69,7 +69,7 @@ export default function ProductCard({ product }) {
           {product.price}€
         </Typography>
       </CardContent>
-      <CardActions style={{ display: "flex", justifyContent: "center" }}>
+      <CardActions style={{ display: "flex", justifyContent: "center", alignItems: "flex-end"}}>
         <Button onClick={handleWishList} size="small" sx={{ color: "#52489C" }}>
           <FavoriteIcon sx={{ color: "#52489C" }} />
           Wish List

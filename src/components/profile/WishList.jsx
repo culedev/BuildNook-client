@@ -40,7 +40,7 @@ const WishList = ({ profile, getProfile }) => {
     >
       {profile.wishList.map((eachItem) => {
         return (
-          <div style={boxWish}>
+          <div style={boxWish} key={eachItem._id}>
             <Link
               to={`/products/${eachItem._id}/details`}
               style={{ textDecoration: "none", color: "black" }}

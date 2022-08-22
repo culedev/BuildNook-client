@@ -28,8 +28,6 @@ const Profile = () => {
       return <EditProfile />;
     } else if (display === "purchase-history") {
       return <PurchaseHistory />;
-    } else if (display === "wish-list") {
-      return <WishList profile={profile}/>;
     } else if (display === "my-reviews") {
       return <MyReviews />;
     } else {

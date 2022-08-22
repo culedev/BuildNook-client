@@ -46,7 +46,7 @@ const Home = () => {
       </div>
       <Divider orientation="vertical" flexItem />
       <div style={{ flexGrow: 2, margin: "20px" }}>
-        <h2 style={{ color: "#52489C" }}>DISCOVER NEW PRODUCTS</h2>
+          <h2 style={{ color: "#52489C" }}>DISCOVER NEW PRODUCTS</h2>
         <Divider />
         <Grid
           container

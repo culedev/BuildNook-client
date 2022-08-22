@@ -25,6 +25,8 @@ import { Link, useNavigate } from "react-router-dom";
 // CONTEXT
 import { AuthContext } from "../../context/auth.context";
 import { ProfileContext } from "../../context/profile.context";
+// SERVICES
+import { getAllProducts } from "../../services/products.services"
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -73,7 +75,7 @@ export default function PrimarySearchAppBar() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-
+  const [search, setSearch] = useState("")
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -81,6 +83,24 @@ export default function PrimarySearchAppBar() {
     getProfile();
     authenticateUser();
   }, []);
+
+  // const handleSearch = (event) => {
+  //   setSearch(event.target.value)
+  //   findProducts()
+  // }
+
+  // const findProducts = async () => {
+  //   try {
+  //     const response = await getAllProducts()
+  //     const products = response.data
+  //     const filteredProducts = products.filter(eachProd => {
+  //       return eachProd.name.toLowerCase().includes(search.toLowerCase())
+  //     })
+  //     console.log(filteredProducts)
+  //   } catch (error) {
+  //     navigate("/error")
+  //   }
+  // }
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -300,7 +320,9 @@ export default function PrimarySearchAppBar() {
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
+              type="text"
+              name="search"
+              // onChange={handleSearch}
             />
           </Search>
 
