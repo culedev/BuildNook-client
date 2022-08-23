@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Organizate calls to backend
 const service = axios.create({
-  baseURL: "http://localhost:5005/api",
+  baseURL: `${process.env.REACT_APP_SERVER_URL}`
 });
 
 // INTERCEPTOR -> Add token to the call using interceptor
