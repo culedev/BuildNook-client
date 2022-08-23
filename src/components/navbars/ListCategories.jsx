@@ -22,8 +22,6 @@ const data = [
   { label: "GRAPHIC CARDS", path: "/products/graphic-cards"  },
   { label: "RAM", path: "/products/ram"  },
   { label: "PC TOWER", path: "/products/pc-tower"  },
-  { label: "FAN", path: "/products/fan"  },
-  { label: "LIQUID REFRIGERATION", path: "/products/liquid-refrigeration"  },
 ];
 
 const FireNav = styled(List)({
@@ -89,7 +87,7 @@ export default function CustomizedList() {
                     mb: "2px",
                     color: "#52489C",
                   }}
-                  secondary="POWER SUPPLY, MOTHERBOARD, HDD, SSD, GRAPHIC CARDS, RAM, PC TOWER, FAN, LIQUID REFRIGERATION"
+                  secondary="POWER SUPPLY, MOTHERBOARD, HDD, SSD, GRAPHIC CARDS, RAM, PC TOWER"
                   secondaryTypographyProps={{
                     noWrap: true,
                     fontSize: 12,

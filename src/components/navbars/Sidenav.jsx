@@ -16,8 +16,6 @@ const categoriesArr = [
   "graphic-cards",
   "ram",
   "pc-tower",
-  "fan",
-  "liquid-refrigeration",
 ];
 
 export default function BasicMenu() {
