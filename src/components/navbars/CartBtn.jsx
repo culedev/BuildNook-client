@@ -2,10 +2,13 @@ import React, { useContext, useEffect} from "react";
 import { ProfileContext } from "../../context/profile.context";
 import SimpleBackdrop from "../SimpleBackdrop";
 import { Divider } from "@mui/material";
-import { Link } from "react-router-dom";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { deleteProductFromCart } from "../../services/transaction.services";
 
 const CartBtn = () => {
+  const navigate = useNavigate()
   const { profile, getProfile, isFetchingProfile } = useContext(ProfileContext);
   console.log(profile);
 
@@ -18,6 +21,15 @@ const CartBtn = () => {
         console.log(product.price)
         return acc + product.price
     }, 0)
+
+  const handleDelete = async (productId) => {
+    try {
+      await deleteProductFromCart(productId)
+      getProfile()
+    } catch (error) {
+      navigate("/error")
+    }
+  }
 
 
   if (isFetchingProfile) {
@@ -32,8 +44,8 @@ const CartBtn = () => {
             <img
               src={eachProduct.image}
               alt={eachProduct.name}
-              width={50}
-              height={50}
+              width={70}
+              height={70}
             />
             <div
               style={{
@@ -46,6 +58,7 @@ const CartBtn = () => {
                 <strong>{eachProduct.name}</strong>
               </span>
               <span>{eachProduct.price}€</span>
+              <Button onClick={() => handleDelete(eachProduct._id)} style={{width: 20, color: "red"}}><HighlightOffIcon /></Button>
             </div>
           </div>
         );

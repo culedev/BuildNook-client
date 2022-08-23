@@ -1,5 +1,5 @@
 // STYLES
-import * as React from 'react';
+import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,7 +16,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Button from "@mui/material/Button";
 import MediaQuery from "react-responsive";
-import Drawer from '@mui/material/Drawer';
+import Drawer from "@mui/material/Drawer";
 // COMPONENTS
 import Sidenav from "./Sidenav";
 import SimpleBackdrop from "../SimpleBackdrop";
@@ -28,8 +28,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import { ProfileContext } from "../../context/profile.context";
 // SERVICES
-import { getAllProducts } from "../../services/products.services";
-import CartBtn from './CartBtn';
+
+import CartBtn from "./CartBtn";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -87,23 +87,14 @@ export default function PrimarySearchAppBar() {
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
-
     setState({ ...state, [anchor]: open });
   };
-
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-     
-    </Box>
-  );
 
   useEffect(() => {
     getProfile();
@@ -195,15 +186,23 @@ export default function PrimarySearchAppBar() {
           color="inherit"
         >
           <Badge badgeContent={profile.shoppingCart.length} color="error">
-            <React.Fragment key={"right"} style={{width: "10px"}}>
-              <Button onClick={toggleDrawer("right", true)} style={{color: "white"}}>
-                <ShoppingCartIcon />
-              </Button>
+            <React.Fragment key={"right"} style={{ width: "10px" }}>
+              <ShoppingCartIcon onClick={toggleDrawer("right", true)} />
               <Drawer
                 anchor={"right"}
                 open={state["right"]}
                 onClose={toggleDrawer("right", false)}
               >
+                <Button
+                  style={{
+                    color: "#52489C",
+                    display: "flex",
+                    justifyContent: "flex-start",
+                  }}
+                  onClick={toggleDrawer("right", false)}
+                >
+                  {"<"} Close Cart{" "}
+                </Button>
                 <CartBtn />
               </Drawer>
             </React.Fragment>

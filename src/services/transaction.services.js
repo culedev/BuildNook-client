@@ -8,4 +8,9 @@ const addProductToCart = (productId) => {
   return service.patch(`/transaction/${productId}`);
 };
 
-export {getTransactions, addProductToCart};
+// Delete product from shopping cart
+const deleteProductFromCart = (productId) => {
+  return service.patch(`/transaction/${productId}/delete`)
+}
+
+export {getTransactions, addProductToCart, deleteProductFromCart};
