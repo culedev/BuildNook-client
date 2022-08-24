@@ -7,6 +7,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 // HOOKS
 import { useEffect, useState, useContext } from "react";
 import { ProfileContext } from '../../context/profile.context';
+import { useSnackbar } from "notistack";
 // ROUTES
 import { useNavigate, useParams } from "react-router-dom";
 // SERVICES
@@ -29,6 +30,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [rating, setRating] = useState({});
   const [isFetching, setIsFetching] = useState(true);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   useEffect(() => {
     getProduct();
@@ -51,6 +53,14 @@ const ProductDetail = () => {
       try {
         await addProductToCart(product._id);
         getProfile();
+        enqueueSnackbar(`${product.name} added to Shopping Cart`, {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "center",
+          },
+          preventDuplicate: true,
+        });
       } catch (error) {
         navigate("/error")
       }
@@ -64,6 +74,14 @@ const ProductDetail = () => {
       try {
         await addToWishList(product._id);
         getProfile();
+        enqueueSnackbar(`${product.name} added to Wish List`, {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "center",
+          },
+          preventDuplicate: true,
+        });
       } catch (error) {
         navigate("/error")
       }

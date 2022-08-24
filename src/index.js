@@ -6,16 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AuthWrapper } from "./context/auth.context";
 import { ProfileWrapper } from "./context/profile.context";
-import { AlertWrapper } from "./context/alert.context";
+import { SnackbarProvider } from "notistack";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
     <AuthWrapper>
       <ProfileWrapper>
-        <AlertWrapper>
+        <SnackbarProvider maxSnack={3}>
           <App />
-        </AlertWrapper>
+        </SnackbarProvider>
       </ProfileWrapper>
     </AuthWrapper>
   </BrowserRouter>

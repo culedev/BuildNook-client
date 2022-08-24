@@ -11,6 +11,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { addProductToCart } from "../services/transaction.services";
 import { addToWishList } from "../services/products.services";
 // HOOKS
+import { useSnackbar } from "notistack";
 import { ProfileContext } from "../context/profile.context";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
@@ -20,36 +21,53 @@ import { Link, useNavigate } from "react-router-dom";
 export default function ProductCard({ product }) {
   const navigate = useNavigate();
   const { getProfile } = useContext(ProfileContext);
-  const { isUserActive } = useContext(AuthContext)
+  const { isUserActive } = useContext(AuthContext);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const handleAddCart = async () => {
-    if(isUserActive){
+    if (isUserActive) {
       try {
         await addProductToCart(product._id);
         getProfile();
+        enqueueSnackbar(`${product.name} added to Shopping Cart`, {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "center",
+          },
+          preventDuplicate: true,
+        });
       } catch (error) {
         navigate("/error");
       }
     } else {
-      navigate("/login")
+      navigate("/login");
     }
   };
 
   const handleWishList = async () => {
-    if(isUserActive) {
+    if (isUserActive) {
       try {
         await addToWishList(product._id);
         getProfile();
+        enqueueSnackbar(`${product.name} added to Wish List`, {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "center",
+          },
+          preventDuplicate: true,
+        });
       } catch (error) {
         navigate("/error");
       }
     } else {
-      navigate("/login")
+      navigate("/login");
     }
   };
 
   return (
-    <Card sx={{ maxWidth: 345, minWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }}>
       <Link
         to={`/products/${product._id}/details`}
         style={{ textDecoration: "none" }}
@@ -69,7 +87,13 @@ export default function ProductCard({ product }) {
           {product.price}€
         </Typography>
       </CardContent>
-      <CardActions style={{ display: "flex", justifyContent: "center", alignItems: "flex-end"}}>
+      <CardActions
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-end",
+        }}
+      >
         <Button onClick={handleWishList} size="small" sx={{ color: "#52489C" }}>
           <FavoriteIcon sx={{ color: "#52489C" }} />
           Wish List

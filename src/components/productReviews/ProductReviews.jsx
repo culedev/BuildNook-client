@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 // HOOKS
 import { useContext, useEffect, useState } from "react";
+import { useSnackbar } from "notistack";
 // ROUTES
 import { useNavigate, useParams } from "react-router-dom";
 // SERVICES
@@ -21,6 +22,7 @@ const ProductReviews = () => {
   const { isUserActive, user } = useContext(AuthContext);
   const [reviews, setReviews] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   useEffect(() => {
     getProductReviews();
@@ -42,6 +44,14 @@ const ProductReviews = () => {
     try {
       await deleteReview(reviewId);
       getProductReviews();
+      enqueueSnackbar(`Review removed successfully`, {
+        variant: "success",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "center",
+        },
+        preventDuplicate: true,
+      });
     } catch (error) {
       navigate("/error");
     }

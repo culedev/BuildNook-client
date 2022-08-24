@@ -6,6 +6,7 @@ import SendIcon from "@mui/icons-material/Send";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 // HOOKS
+import { useSnackbar } from "notistack";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 // COMPONENTS
@@ -19,6 +20,7 @@ const ProductReviews = () => {
     description: "",
     rating: 0,
   });
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -45,6 +47,14 @@ const ProductReviews = () => {
   const handleSubmit = async () => {
     try {
       await postReview(productId, newReview);
+      enqueueSnackbar(`Review added successfully`, {
+        variant: "success",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "center",
+        },
+        preventDuplicate: true,
+      })
     } catch (error) {
       navigate("/error");
     }

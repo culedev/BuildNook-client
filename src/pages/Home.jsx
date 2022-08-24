@@ -55,6 +55,7 @@ const Home = () => {
           style={{ margin: "20px" }}
         >
           {products.map((product, index) => (
+            
             <Grid
               xs={2}
               sm={4}
@@ -62,7 +63,7 @@ const Home = () => {
               key={index}
               style={{ display: "flex", justifyContent: "center" }}
             >
-              <ProductCard product={product} />
+              <ProductCard product={product}/>
             </Grid>
           ))}
         </Grid>
