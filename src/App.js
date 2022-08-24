@@ -15,6 +15,7 @@ import ShoppingCart from "./pages/ShoppingCart/ShoppingCart.jsx"
 import IsPrivate from "./components/isPrivate"
 import Error from "./pages/Error.jsx"
 import NotFound from "./pages/NotFound.jsx"
+import Success from './components/Payment/Success';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/cart/:userId" element={ <IsPrivate> <ShoppingCart /> </IsPrivate> }/>
         <Route path="/signup" element={ <Signup /> }/>
         <Route path="/login" element={ <Login /> }/>
+        <Route path='/paymentsuccess' element={<IsPrivate><Success /></IsPrivate>}/>
         {/* Error Routes */}
         <Route path="/error" element={ <Error /> }/>
         <Route path="/*" element={ <NotFound />}/>

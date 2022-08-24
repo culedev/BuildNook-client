@@ -8,7 +8,7 @@ import { uploadService } from "../../services/upload.services";
 
 const EditProfile = () => {
   const navigate = useNavigate();
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
 
   const handleImgUpload = async (event) => {
     const form = new FormData();
@@ -26,11 +26,12 @@ const EditProfile = () => {
   const handleSubmit = async () => {
     try {
       await editProfile(imageUrl);
-      console.log(imageUrl);
     } catch (error) {
       navigate("/error");
     }
   };
+
+  const isBtnActive = imageUrl === null && "disabled";
 
   return (
     <div>
@@ -41,13 +42,35 @@ const EditProfile = () => {
         onChange={handleImgUpload}
       />
       <label htmlFor={`preview`}>
-        <Button variant="outlined" component="span" size="small" style={{borderColor: "#52489C", color: "#52489C"}}>
+        <Button
+          variant="outlined"
+          component="span"
+          size="small"
+          style={{ borderColor: "#52489C", color: "#52489C" }}
+        >
           SELECT PROFILE IMAGE
         </Button>
       </label>
       <form onSubmit={handleSubmit}>
-      <br />
-        <Button variant="contained" style={{backgroundColor: "#52489C"}}>Update Profile</Button>
+        <br />
+        {imageUrl !== null ? (
+          <Button
+            type="submit"
+            variant="contained"
+            style={{ backgroundColor: "#52489C"}}
+          >
+            Update Profile
+          </Button>
+        ) : (
+          <Button
+            type="submit"
+            variant="contained"
+            style={{backgroundColor: "white", color: "#52489C"  }}
+            disabled
+          >
+            Update Profile
+          </Button>
+        )}
       </form>
     </div>
   );

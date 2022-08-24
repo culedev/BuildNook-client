@@ -8,4 +8,9 @@ const editProfile = (image) => {
   return service.patch("/profile", image)
 }
 
-export { findProfile, editProfile };
+// Get shopping cart
+const getShoppingCart = () => {
+  return service.get("/profile/shopping-cart")
+}
+
+export { findProfile, editProfile, getShoppingCart };

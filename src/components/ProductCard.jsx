@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Rating } from "@mui/material";
 // SERVICES
 import { addProductToCart } from "../services/transaction.services";
 import { addToWishList } from "../services/products.services";
@@ -80,7 +81,7 @@ export default function ProductCard({ product }) {
         />
       </Link>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h6" component="div">
           {product.name}
         </Typography>
         <Typography variant="h5" color="#52489C">

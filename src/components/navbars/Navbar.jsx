@@ -166,7 +166,7 @@ export default function PrimarySearchAppBar() {
           color="inherit"
         >
           <Badge badgeContent={profile.shoppingCart.length} color="error">
-            <React.Fragment key={"right"} style={{ width: "10px" }}>
+            <React.Fragment key={"right"}>
               <ShoppingCartIcon onClick={toggleDrawer("right", true)} />
               <Drawer
                 anchor={"right"}
@@ -183,7 +183,7 @@ export default function PrimarySearchAppBar() {
                 >
                   {"<"} Close Cart{" "}
                 </Button>
-                <CartBtn />
+                <CartBtn btnShow={true}/>
               </Drawer>
             </React.Fragment>
           </Badge>
@@ -255,31 +255,31 @@ export default function PrimarySearchAppBar() {
       {isUserActive && (
         <div>
           <Link
-            to={`/profile/${profile._id}/my-profile`}
+            to={`/profile/${profile?._id}/my-profile`}
             style={{ textDecoration: "none", color: "#52489C" }}
           >
             <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
           </Link>
           <Link
-            to={`/profile/${profile._id}/wish-list`}
+            to={`/profile/${profile?._id}/wish-list`}
             style={{ textDecoration: "none", color: "#52489C" }}
           >
             <MenuItem onClick={handleMenuClose}>Wish List</MenuItem>
           </Link>
           <Link
-            to={`/profile/${profile._id}/purchase-history`}
+            to={`/profile/${profile?._id}/purchase-history`}
             style={{ textDecoration: "none", color: "#52489C" }}
           >
             <MenuItem onClick={handleMenuClose}>Purchase History</MenuItem>
           </Link>
           <Link
-            to={`/profile/${profile._id}/my-reviews`}
+            to={`/profile/${profile?._id}/my-reviews`}
             style={{ textDecoration: "none", color: "#52489C" }}
           >
             <MenuItem onClick={handleMenuClose}>My Reviews</MenuItem>
           </Link>
           <Link
-            to={`/profile/${profile._id}/edit-profile`}
+            to={`/profile/${profile?._id}/edit-profile`}
             style={{ textDecoration: "none", color: "#52489C" }}
           >
             <MenuItem onClick={handleMenuClose}>Edit Profile</MenuItem>

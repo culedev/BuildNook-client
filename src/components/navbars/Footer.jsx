@@ -24,8 +24,8 @@ const Footer = () => {
   return (
     <footer>
       <Box
-        px={{ xs: 2, sm: 2 }}
-        py={{ xs: 2, sm: 2 }}
+        px={{ xs: 1, sm: 1 }}
+        py={{ xs: 1, sm: 1 }}
         bgcolor="#52489C"
         color="white"
       >

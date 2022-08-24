@@ -31,10 +31,8 @@ const ProductReviews = () => {
   const getProductReviews = async () => {
     try {
       const response = await getAllReviews(productId);
-      console.log(response.data)
       setReviews(response.data);
       setIsFetching(false);
-      console.log(response.data);
     } catch (error) {
       navigate("/error");
     }
@@ -104,7 +102,7 @@ const ProductReviews = () => {
                     marginRight: "5px",
                   }}
                 />
-                <h5>{eachReview.user.username}</h5>
+                <h4 style={{marginLeft: "10px"}}>{eachReview.user.username}</h4>
               </div>
               <Rating
                 name="read-only"
