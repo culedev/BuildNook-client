@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+import { Button } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { patchPayment } from '../../services/transaction.services'
+import SimpleBackdrop from '../SimpleBackdrop'
 
 const Success = (props) => {
+    const [isFetching, setIsFetching] = useState(true)
     const clientSecret = new URLSearchParams(window.location.search).get(
         'payment_intent_client_secret'
       );
@@ -18,16 +21,22 @@ const Success = (props) => {
     const completePayment = async () => {
         try {
             await patchPayment({client: clientSecret, payment: paymentIntent})
-            setTimeout(() => {
-                navigate("/")
-            }, 5000);
+            setIsFetching(false)
         } catch (error) {
             navigate("/error")
         }
     }
 
+    if(isFetching){
+      return <SimpleBackdrop />
+    }
+
   return (
-    <div>Success</div>
+    <div>
+    
+      <Button>Continue Shopping</Button>
+    
+    </div>
   )
 }
 

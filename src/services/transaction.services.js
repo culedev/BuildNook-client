@@ -23,10 +23,16 @@ const patchPayment = (clientSecret) => {
   return service.patch("/transaction", clientSecret)
 }
 
+// GET all transactions
+const getAllTransactions = () => {
+  return service.get("/transaction/all")
+}
+
 export {
   getTransactions,
   addProductToCart,
   deleteProductFromCart,
   postIntentPayment,
   patchPayment,
+  getAllTransactions,
 };

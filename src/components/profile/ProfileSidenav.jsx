@@ -41,7 +41,7 @@ const data = [
 
   const [open, setOpen] = useState(true);
   return (
-    <MediaQuery minWidth={730}>
+    <MediaQuery minWidth={1024}>
     <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", marginTop: "20px", alignItems: "center"}}>
       <ThemeProvider
         theme={createTheme({

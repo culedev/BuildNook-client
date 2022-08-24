@@ -327,7 +327,7 @@ export default function PrimarySearchAppBar() {
               Build NooK
             </Typography>
           </Link>
-          <MediaQuery maxWidth={730}>
+          <MediaQuery maxWidth={1024}>
             <Sidenav />
           </MediaQuery>
           <Search style={{ marginRight: "auto" }}>

@@ -1,0 +1,41 @@
+.cardContainer {
+  border: 1px ridge rgba(79, 28, 219, 0.23);
+  margin-top: 16px;
+  padding: 16px;
+}
+
+.transactionId {
+  text-align: left;
+}
+
+.product {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.imgContainer {
+  margin-right: auto;
+}
+
+.imgContainer img {
+  max-width: 64px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.dataContainer {
+  margin-left: 48px;
+  margin-right: 16px;
+}
+
+.productName {
+  margin-bottom: 0;
+}
+.productPrice {
+  margin-top: 0;
+}
