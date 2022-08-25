@@ -9,7 +9,6 @@ import { ProfileContext } from "../../context/profile.context";
 // COMPONENTS
 import ProfileSidenav from "../../components/profile/ProfileSidenav";
 import EditProfile from "../../components/profile/EditProfile.jsx";
-import MyReviews from "../../components/profile/MyReviews.jsx";
 import PurchaseHistory from "../../components/profile/PurchaseHistory.jsx";
 import WishList from "../../components/profile/WishList.jsx";
 import SimpleBackdrop from '../../components/SimpleBackdrop';
@@ -28,8 +27,6 @@ const Profile = () => {
       return <EditProfile />;
     } else if (display === "purchase-history") {
       return <PurchaseHistory />;
-    } else if (display === "my-reviews") {
-      return <MyReviews />;
     } else {
       return <WishList profile={profile} getProfile={getProfile}/>;
     }

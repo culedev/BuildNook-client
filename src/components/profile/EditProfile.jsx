@@ -17,7 +17,6 @@ const EditProfile = () => {
     try {
       const response = await uploadService(form);
       setImageUrl(response.data);
-      await editProfile(imageUrl);
     } catch (error) {
       navigate("/error");
     }
@@ -31,7 +30,6 @@ const EditProfile = () => {
     }
   };
 
-  const isBtnActive = imageUrl === null && "disabled";
 
   return (
     <div>

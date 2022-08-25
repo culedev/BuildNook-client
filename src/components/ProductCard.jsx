@@ -68,19 +68,14 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 345}} >
       <Link
         to={`/products/${product._id}/details`}
         style={{ textDecoration: "none" }}
       >
-        <CardMedia
-          component="img"
-          alt="green iguana"
-          height="200"
-          image={product.image}
-        />
+        <img src={product.image} alt={product.name} width={200} height={200}/>
       </Link>
-      <CardContent>
+      <CardContent >
         <Typography gutterBottom variant="h6" component="div">
           {product.name}
         </Typography>

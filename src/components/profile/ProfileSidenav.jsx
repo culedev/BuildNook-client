@@ -36,7 +36,6 @@ const data = [
   { label: "EDIT PROFILE", path: `/profile/${user._id}/edit-profile`},
   { label: "PURCHASE HISTORY", path: `/profile/${user._id}/purchase-history`},
   { label: "WISH LIST", path: `/profile/${user._id}/wish-list`},
-  { label: "MY REVIEWS", path: `/profile/${user._id}/my-reviews`},
 ];
 
   const [open, setOpen] = useState(true);
@@ -87,7 +86,7 @@ const data = [
                     mb: "2px",
                     color: "#52489C",
                   }}
-                  secondary="EDIT PROFILE, PURCHASE HISTORY, WISH LIST, MY REVIEWS"
+                  secondary="EDIT PROFILE, PURCHASE HISTORY, WISH LIST"
                   secondaryTypographyProps={{
                     noWrap: true,
                     fontSize: 12,

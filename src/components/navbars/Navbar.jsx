@@ -273,12 +273,6 @@ export default function PrimarySearchAppBar() {
             <MenuItem onClick={handleMenuClose}>Purchase History</MenuItem>
           </Link>
           <Link
-            to={`/profile/${profile?._id}/my-reviews`}
-            style={{ textDecoration: "none", color: "#52489C" }}
-          >
-            <MenuItem onClick={handleMenuClose}>My Reviews</MenuItem>
-          </Link>
-          <Link
             to={`/profile/${profile?._id}/edit-profile`}
             style={{ textDecoration: "none", color: "#52489C" }}
           >
@@ -331,15 +325,7 @@ export default function PrimarySearchAppBar() {
             <Sidenav />
           </MediaQuery>
           <Search style={{ marginRight: "auto" }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              type="text"
-              name="search"
-              // onChange={handleSearch}
-            />
+           
           </Search>
 
           <Box />

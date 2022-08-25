@@ -116,6 +116,7 @@ const ProductReviews = () => {
               <p>{eachReview.description}</p>
             </div>
             {deleteBtn(eachReview)}
+            
           </div>
         );
       })}

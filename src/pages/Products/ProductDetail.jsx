@@ -2,18 +2,20 @@
 import "./Details.css";
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 // HOOKS
 import { useEffect, useState, useContext } from "react";
-import { ProfileContext } from '../../context/profile.context';
+import { ProfileContext } from "../../context/profile.context";
 import { useSnackbar } from "notistack";
 // ROUTES
 import { useNavigate, useParams } from "react-router-dom";
 // SERVICES
 import { getProductDetails } from "../../services/products.services";
-import { addProductToCart } from '../../services/transaction.services';
-import { addToWishList } from '../../services/products.services';
+import { addProductToCart } from "../../services/transaction.services";
+import { addToWishList } from "../../services/products.services";
+import { uploadService } from "../../services/upload.services";
+import { editProducts } from "../../services/products.services";
 // COMPONENTS
 import ListCategories from "../../components/navbars/ListCategories";
 import BoxDescRev from "../../components/BoxDescRev";
@@ -24,17 +26,39 @@ import AddReview from "../../components/productReviews/AddReview";
 
 const ProductDetail = () => {
   const navigate = useNavigate();
-  const {getProfile} = useContext(ProfileContext)
-  const { isUserActive } = useContext(AuthContext)
+  const { getProfile } = useContext(ProfileContext);
+  const { isUserActive } = useContext(AuthContext);
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [rating, setRating] = useState({});
   const [isFetching, setIsFetching] = useState(true);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
+  const [imageUrl, setImageUrl] = useState(null);
+
   useEffect(() => {
     getProduct();
   }, []);
+
+  const handleImgUpload = async (event) => {
+    const form = new FormData();
+    form.append("imageUrl", event.target.files[0]);
+
+    try {
+      const response = await uploadService(form);
+      setImageUrl(response.data);
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await editProducts(productId, {image: imageUrl});
+    } catch (error) {
+      navigate("/error");
+    }
+  };
 
   const getProduct = async () => {
     try {
@@ -49,7 +73,7 @@ const ProductDetail = () => {
   };
 
   const handleAddCart = async () => {
-    if(isUserActive){
+    if (isUserActive) {
       try {
         await addProductToCart(product._id);
         getProfile();
@@ -62,15 +86,15 @@ const ProductDetail = () => {
           preventDuplicate: true,
         });
       } catch (error) {
-        navigate("/error")
+        navigate("/error");
       }
     } else {
-      navigate("/login")
+      navigate("/login");
     }
   };
 
   const handleWishList = async () => {
-    if(isUserActive) {
+    if (isUserActive) {
       try {
         await addToWishList(product._id);
         getProfile();
@@ -83,10 +107,10 @@ const ProductDetail = () => {
           preventDuplicate: true,
         });
       } catch (error) {
-        navigate("/error")
+        navigate("/error");
       }
     } else {
-      navigate("/login")
+      navigate("/login");
     }
   };
 
@@ -117,7 +141,7 @@ const ProductDetail = () => {
               />
               <p>({rating.length})</p>
             </div>
-            <div style={{marginTop: "10px"}}>
+            <div style={{ marginTop: "10px" }}>
               <Button
                 onClick={handleWishList}
                 size="small"
