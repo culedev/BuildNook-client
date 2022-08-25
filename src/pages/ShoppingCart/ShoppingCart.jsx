@@ -1,4 +1,5 @@
 // STYLES
+import "./Cart.css"
 import { Divider, Button } from "@mui/material";
 // HOOKS
 import { useEffect, useState } from "react";
@@ -36,7 +37,7 @@ const ShoppingCart = () => {
   return (
     <div>
     
-      <div style={{display: "flex", justifyContent: "center",width: "100%", marginBottom: "30px"}}>
+      <div className="cartcontainer">
         <div style={{display: "flex", flexDirection: "column", alignItems: "center", width: "50%"}}>
           <h2>CART PRODUCTS</h2>
           <div>
