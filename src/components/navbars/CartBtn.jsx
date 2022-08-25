@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import { deleteProductFromCart } from "../../services/transaction.services";
 import { useSnackbar } from "notistack";
 
-const CartBtn = ({ btnShow }) => {
+const CartBtn = ({ btnShow, toggleDrawer }) => {
   const navigate = useNavigate();
   const { profile, getProfile, isFetchingProfile } = useContext(ProfileContext);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -81,7 +81,7 @@ const CartBtn = ({ btnShow }) => {
         <h4>Subtotal: {totalPrice.toFixed(2)} €</h4>
         <Link to={`/cart/${profile._id}`} style={{ textDecoration: "none" }}>
           {btnShow === true && (
-            <Button variant="contained" style={{ backgroundColor: "#52489C" }}>
+            <Button variant="contained" onClick={toggleDrawer("right", false)} style={{ backgroundColor: "#52489C" }}>
               PAY WITH STRIPE
             </Button>
           )}

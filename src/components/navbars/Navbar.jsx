@@ -158,7 +158,7 @@ export default function PrimarySearchAppBar() {
                 >
                   {"<"} Close Cart{" "}
                 </Button>
-                <CartBtn btnShow={true} />
+                <CartBtn btnShow={true} toggleDrawer={toggleDrawer}/>
               </Drawer>
             </React.Fragment>
           </Badge>
