@@ -10,7 +10,7 @@ import { postIntentPayment } from "../../services/transaction.services";
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
 const stripePromise = loadStripe(
-  "pk_test_51LZa7LDzSkiitMALH1fgvODonQwkQxAj9E7h2L1SbJsMTTX8qIermoSAFCG1Nbf7DfNJLokJxum7o5URMQqMX76N00ZoTHN1Ig"
+  `${process.env.REACT_APP_STRIPE_KEY}`
 );
 
 export default function PaymentIntent({ cartProducts }) {
