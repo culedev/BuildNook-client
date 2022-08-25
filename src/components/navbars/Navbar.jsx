@@ -96,7 +96,7 @@ export default function PrimarySearchAppBar() {
   };
 
   if (isFetchingProfile) {
-    return <SimpleBackdrop />;
+    return <SimpleBackdrop />; 
   }
 
   // Show Login/Signup btns when user isnt active
@@ -139,7 +139,7 @@ export default function PrimarySearchAppBar() {
           aria-label="show new notifications"
           color="inherit"
         >
-          <Badge badgeContent={profile.shoppingCart.length} color="error">
+          <Badge badgeContent={profile?.shoppingCart.length} color="error">
             <React.Fragment key={"right"}>
               <ShoppingCartIcon onClick={toggleDrawer("right", true)} />
               <Drawer
