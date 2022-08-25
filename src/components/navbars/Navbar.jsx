@@ -69,8 +69,8 @@ export default function PrimarySearchAppBar() {
   };
 
   useEffect(() => {
-    getProfile();
     authenticateUser();
+    getProfile();
   }, []);
 
   const handleLogout = () => {

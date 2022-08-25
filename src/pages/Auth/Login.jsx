@@ -10,10 +10,11 @@ import { AuthContext } from "../../context/auth.context";
 // SERVICES
 import { loginService } from "../../services/auth.services";
 import { Link } from "react-router-dom";
+import { ProfileContext } from "../../context/profile.context";
 
 const Login = () => {
   const { authenticateUser } = useContext(AuthContext);
-
+  const { getProfile } = useContext(ProfileContext)
   const navigate = useNavigate();
 
   const [userCredentials, setUserCredentials] = useState({
@@ -36,7 +37,7 @@ const Login = () => {
 
       localStorage.setItem("authToken", authToken);
       authenticateUser();
-
+      getProfile()
       navigate("/");
     } catch (error) {
       if (error.response.status === 400) {
