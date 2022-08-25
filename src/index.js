@@ -14,7 +14,7 @@ root.render(
   <BrowserRouter>
     <AuthWrapper>
       <ProfileWrapper>
-        <SnackbarProvider maxSnack={3}>
+        <SnackbarProvider maxSnack={3} autoHideDuration={2000}>
           <App />
         </SnackbarProvider>
       </ProfileWrapper>
