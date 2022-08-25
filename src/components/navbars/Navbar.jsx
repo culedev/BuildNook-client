@@ -10,7 +10,6 @@ import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MoreIcon from "@mui/icons-material/MoreVert";
@@ -43,30 +42,6 @@ const Search = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
     width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
   },
 }));
 
@@ -183,7 +158,7 @@ export default function PrimarySearchAppBar() {
                 >
                   {"<"} Close Cart{" "}
                 </Button>
-                <CartBtn btnShow={true}/>
+                <CartBtn btnShow={true} />
               </Drawer>
             </React.Fragment>
           </Badge>
@@ -304,6 +279,20 @@ export default function PrimarySearchAppBar() {
       onClose={handleMobileMenuClose}
     >
       {isUserActive && showProfileMobile()}
+      {!isUserActive && (
+        <div>
+          <MenuItem style={{ color: "#52489C" }}>
+            <Link to={"/signup"} style={{ textDecoration: "none" }}>
+              Sign Up
+            </Link>
+          </MenuItem>
+          <MenuItem style={{ color: "#52489C" }}>
+            <Link to={"/login"} style={{ textDecoration: "none" }}>
+              Log In
+            </Link>
+          </MenuItem>
+        </div>
+      )}
     </Menu>
   );
 
@@ -324,9 +313,7 @@ export default function PrimarySearchAppBar() {
           <MediaQuery maxWidth={1024}>
             <Sidenav />
           </MediaQuery>
-          <Search style={{ marginRight: "auto" }}>
-           
-          </Search>
+          <Search style={{ marginRight: "auto" }}></Search>
 
           <Box />
           {isUserActive && showProfile()}
@@ -342,7 +329,7 @@ export default function PrimarySearchAppBar() {
               <MoreIcon />
             </IconButton>
           </Box>
-          {showAuthBtns()}
+          <MediaQuery minWidth={900}>{showAuthBtns()}</MediaQuery>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
