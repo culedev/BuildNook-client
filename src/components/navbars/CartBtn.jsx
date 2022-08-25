@@ -1,12 +1,17 @@
-import React, { useContext, useEffect } from "react";
-import { ProfileContext } from "../../context/profile.context";
-import SimpleBackdrop from "../SimpleBackdrop";
+// STYLES
 import { Divider } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import { deleteProductFromCart } from "../../services/transaction.services";
+// HOOKS
+import React, { useContext, useEffect } from "react";
 import { useSnackbar } from "notistack";
+import { Link, useNavigate } from "react-router-dom";
+// CONTEXT
+import { ProfileContext } from "../../context/profile.context";
+// SERVICES
+import { deleteProductFromCart } from "../../services/transaction.services";
+// COMPONENTS
+import SimpleBackdrop from "../SimpleBackdrop";
 
 const CartBtn = ({ btnShow, toggleDrawer }) => {
   const navigate = useNavigate();

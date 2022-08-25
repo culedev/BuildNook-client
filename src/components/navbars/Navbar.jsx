@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -19,6 +18,7 @@ import Drawer from "@mui/material/Drawer";
 // COMPONENTS
 import Sidenav from "./Sidenav";
 import SimpleBackdrop from "../SimpleBackdrop";
+import CartBtn from "./CartBtn";
 // HOOKS
 import { useContext, useEffect, useState } from "react";
 // ROUTES
@@ -26,8 +26,7 @@ import { Link, useNavigate } from "react-router-dom";
 // CONTEXT
 import { AuthContext } from "../../context/auth.context";
 import { ProfileContext } from "../../context/profile.context";
-// SERVICES
-import CartBtn from "./CartBtn";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",

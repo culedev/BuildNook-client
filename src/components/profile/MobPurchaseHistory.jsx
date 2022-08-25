@@ -1,5 +1,7 @@
+// STYLES
 import "./PurchaseHistory.css";
 import { Divider } from "@mui/material";
+
 const MobPurchaseHistory = ({ transactions }) => {
   return (
     <div>

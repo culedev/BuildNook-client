@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-// COMPONENTS
+// SERVICES
 import { postReview } from "../../services/reviews.service";
 
 const ProductReviews = () => {

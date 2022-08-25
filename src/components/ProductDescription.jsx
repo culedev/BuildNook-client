@@ -1,6 +1,9 @@
+// HOOKS
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+// SERVICES
 import { getProductDetails } from "../services/products.services"
+// COMPONENTS
 import SimpleBackdrop from "./SimpleBackdrop"
 
 const ProductDescription = () => {

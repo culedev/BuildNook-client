@@ -11,6 +11,7 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import MediaQuery from 'react-responsive'
 // HOOKS
 import { useContext, useState } from "react";
+// CONTEXT
 import { AuthContext } from "../../context/auth.context";
 // ROUTES
 import { Link } from "react-router-dom";

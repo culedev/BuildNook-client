@@ -2,7 +2,7 @@
 import Grid from "@mui/material/Unstable_Grid2";
 import { Divider } from "@mui/material";
 // HOOKS
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // ROUTES
 import { useNavigate } from "react-router-dom";
 // SERVICES
@@ -11,14 +11,18 @@ import { getAllProducts } from "../services/products.services";
 import ListCategories from "../components/navbars/ListCategories";
 import ProductCard from "../components/ProductCard";
 import SimpleBackdrop from "../components/SimpleBackdrop";
+// CONTEXT
+import { ProfileContext } from "../context/profile.context";
 
 const Home = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
+  const { getProfile } = useContext(ProfileContext)
 
   useEffect(() => {
     allProducts();
+    getProfile()
   }, []);
 
   const allProducts = async () => {

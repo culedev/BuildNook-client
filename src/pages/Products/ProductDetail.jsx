@@ -16,11 +16,12 @@ import { addProductToCart } from "../../services/transaction.services";
 import { addToWishList } from "../../services/products.services";
 import { uploadService } from "../../services/upload.services";
 import { editProducts } from "../../services/products.services";
+import { avgRating } from "../../services/reviews.service";
+// CONTEXT
+import { AuthContext } from "../../context/auth.context";
 // COMPONENTS
 import ListCategories from "../../components/navbars/ListCategories";
 import BoxDescRev from "../../components/BoxDescRev";
-import { avgRating } from "../../services/reviews.service";
-import { AuthContext } from "../../context/auth.context";
 import SimpleBackdrop from "../../components/SimpleBackdrop";
 import AddReview from "../../components/productReviews/AddReview";
 
