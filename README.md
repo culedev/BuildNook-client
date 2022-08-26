@@ -1,70 +1,198 @@
-# Getting Started with Create React App
+# Project Name
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Build Nook is an ecommerce app where you can buy PC components.
 
-In the project directory, you can run:
+## User Stories
 
-### `npm start`
+-  **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
+-  **Signup:** As an anon I can sign up in the platform 
+-  **Login:** As a user I can login to the platform 
+-  **Logout:** As a user I can logout from the platform 
+-  **Add Products to Shopping Cart** As a user I can add a product to shopping cart
+-  **Add Products to Wish List** As a user I want to see the wish list so that I can choose one to buy
+-  **Add Reviews** As a user I want to search restaurants by name so that I know if it´s already in the platform
+-  **Payment with Stripe** As a user I want pay with Stripe. (Test Card: 4242 4242 4242 4242, 11/23 111)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Backlog
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+List of other features outside of the MVPs scope
 
-### `npm test`
+Nav bar
+- Access from all the website
+- Access to the homepage
+- Access to profile sections
+- Access to shopping cart
+- Access to signup/login or logout
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+User Profile
+- See my profile and add or change a picture
+- Upload my profile picture
+- See Wish List 
+- See Purchase History
 
-### `npm run build`
+Homepage
+- Side Nav Bar with a Category List
+- A list of New Products
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Categories List
+- You can see all the products by each Categorie
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Product Details
+- See more information of each Product
+- Write a Review
+- Possibility to rate the product and check the Average Rating
+- Possibility to add shopping cart & wish list
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Shopping Cart
+- Side Nav where you can see your Products to buy
+- Button redirects to Shopping Cart page where you can pay your products
 
-### `npm run eject`
+Success Page
+- Confirms the Payment
+  
+# Client
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Routes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- / - Homepage
+- /signup - Signup form
+- /login - Login form
+- /products/:categorie - Products by each categorie
+- /products/:productId/details - Products details
+- /cart/:userId - Shopping cart
+- /profile/:userId/:display - User profile
+- /paymentsuccess - Confirms Payment
+- /error
+- 404
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Pages
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Home Page (public)
+- Sign in Page (anon only)
+- Log in Page (anon only)
+- Categories (public)
+- Product Details (public)
+- Shopping Cart (user only)
+- My Profile Page (user only)
+- Success (user only)
+- 404 Page (public)
 
-## Learn More
+## Components
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Navbar
+- Cart button
+- Footer
+- Side NavBar List categories
+- Navbar
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Payment
+- Checkout Form
+- Payment Intent
+- Success
 
-### Code Splitting
+### Product Reviews
+- Add Review
+- Product Review
+- Description + Review
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Profile
+- Purchase History Desktop
+- Purchase History Mobile
+- Edit Profile
+- Profile Side NavBar
+- Purchase History
+- Wish List
+- isPrivate
 
-### Analyzing the Bundle Size
+### Products
+- Product Cards
+- Product Description
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Loading
+- Simple Backdrop
 
-### Making a Progressive Web App
+## IO
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## Services
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Config service
+- Auth Service
+- Products service
+- Profile service
+- Reviews service
+- Transaction service
+- Upload service
 
-### Deployment
+# Server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Models
 
-### `npm run build` fails to minify
+User model
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+username - String // required
+email - String // required & unique
+password - String // required
+wishList - [ObjectID<product>]
+shoppingCart - [ObjectID<product>]
+role - String // enum
+isBanned - Boolean
+```
+
+Product model
+
+```
+name - String
+description - [String]
+image - String
+price - Number
+Categorie - String // enum
+
+```
+
+Review model
+
+```
+title - String
+description - String
+rating - Number
+product - ObjectID<product>
+user - ObjectID<user>
+
+```
+
+Transaction model
+
+```
+paymentIntent - String
+clientSecret - String
+isPaid - Boolean
+product - ObjectID<product>
+user - ObjectID<user>
+
+```
+
+## API Endpoints/Backend Routes
+
+- Index routes
+- Auth routes
+- Product routes
+- Profile routes
+- Reviews routes
+- Transaction routes
+- Upload routes
+- Wish List routes
+
+## Links
+
+### Git
+
+The url to your repository and to your deployed project
+
+[Client repository Link](https://github.com/culedev/BuildNook-client)
+[Server repository Link](https://github.com/culedev/BuildNook-server)
+
+[Build Nook Deploy Page](https://buildnook.netlify.app/)
